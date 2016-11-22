@@ -1,11 +1,10 @@
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-
 module.exports = {
 	context: path.join(__dirname,'./src/entries'),
 	entry: {
-		main : './main.js'
+		main : './main.tsx'
 	},
 	output: {
 		path: path.join(__dirname,'hot'),
@@ -17,6 +16,7 @@ module.exports = {
 		loaders: [
 			{ test : /\.less$/, loader : 'style-loader!css-loader!postcss-loader!less-loader'},
 			{ test : /\.css$/,  loader : 'style-loader!css-loader' },
+			{ test : /\.tsx?$/, loader : 'ts-loader' , exclude: /(node_modules|bower_components)/},
 			{ test : /\.jsx?$/, loader : 'babel' , exclude: /(node_modules|bower_components)/},
 			// { test : /\.jsx?$/ , loader : 'babel-loader' , query:{ presets : ['es2015','react'] } , exclude: /(node_modules|bower_components)/},
 			//如果不超过30000/1024kb,那么就直接采用dataUrl的形式,超过则返回链接,图片会复制到dist目录下
@@ -26,7 +26,8 @@ module.exports = {
 	},
 
 	resolve : {
-		root : path.resolve('./src')
+		root : path.resolve('./src'),
+		extensions:  ["", ".js", ".json" ,".ts", ".tsx"] // ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
 		// alias : {
 		//     'react' : path.join(nodeModulesPath,'react/dist/react.js'),
 		//     'react-dom' :  path.join(nodeModulesPath,'react-dom/dist/react-dom.js')
@@ -50,7 +51,7 @@ module.exports = {
 		})
 	],
 	debug : true,
-	devtool : '#inline-source-map'
+	devtool : 'source-map'
 
 	//devServer 配置在webpack.dev.server.js 中
 };
