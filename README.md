@@ -1,6 +1,7 @@
-## React Less Boilerplate
-这个脚手架项目专门为webpack+react开发单页应用定制，支持ie8以及其他现代浏览器，并采用less和postcss处理css。
+## TypeScript Boilerplate
+这个脚手架项目专门为webpack+react开发单页应用定制，使用 TypeScript ，并采用less和postcss处理css。
 
+(目前尚在开发中，请勿使用)
 
 ### IE8 支持
 将  package.josn 中 react 和 react-dom 改为 0.14.0 版本  
