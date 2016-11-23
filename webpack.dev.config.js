@@ -17,10 +17,8 @@ module.exports = {
 		loaders: [
 			{ test : /\.less$/, loader : 'style-loader!css-loader!postcss-loader!less-loader'},
 			{ test : /\.css$/,  loader : 'style-loader!css-loader' },
-			{ test : /\.tsx?$/, loaders: ['react-hot', 'ts'] , exclude: /(node_modules|bower_components)/},
-			{ test : /\.jsx?$/, loader : 'babel' , exclude: /(node_modules|bower_components)/},
-
-			// { test : /\.jsx?$/ , loader : 'babel-loader' , query:{ presets : ['es2015','react'] } , exclude: /(node_modules|bower_components)/},
+			{ test : /\.tsx?$/, loaders: ["react-hot-loader/webpack","ts-loader"] , exclude: /(node_modules|bower_components)/},
+			// { test : /\.jsx?$/, loader : 'babel' , exclude: /(node_modules|bower_components)/},
 			//如果不超过30000/1024kb,那么就直接采用dataUrl的形式,超过则返回链接,图片会复制到dist目录下
 			{ test: /\.(png|jpg|jpeg|gif)$/, loader: "url-loader?limit=30000" },
 			{ test: /\.(svg|ttf|eot|svg|woff(\(?2\)?)?)(\?[a-zA-Z_0-9.=&]*)?(#[a-zA-Z_0-9.=&]*)?$/, loader : "file-loader"}

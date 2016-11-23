@@ -1,31 +1,36 @@
-
 import 'styles/style.less'
-import React = require('react')
-import ReactDom = require('react-dom')
-import App = require('../scripts/components/App')
 
-// declare var __webpack_public_path__  : string;
-// if (process.env.NODE_ENV !== 'production') {
-// 	console.log('this is dev mode')
-// }
+if (process.env.NODE_ENV !== 'production') {
+	console.log('this is dev mode')
+}
 
 /*
 	动态设置publicPath，在正式环境运行的时候为绝对路径，如果需要手动指定，可以直接设置
 	__webpack_public_path__的值，如  __webpack_public_path__ = '/base/bundles/'
 
  */
+var scripts = document.getElementsByTagName('script')
+for (var i = scripts.length - 1; i >= 0; i--) {
+	if(scripts[i].src.indexOf('.bundle.js') >= 0){
+		var src = scripts[i].getAttribute('src')
+		__webpack_public_path__ = src.substr(0, src.lastIndexOf('/') + 1)
+		break
+	}
+}
 
-// declare {
-// 	__webpack_public_path__ : string;
-// }
 
-// var scripts = document.getElementsByTagName('script')
-// for (var i = scripts.length - 1; i >= 0; i--) {
-// 	if(scripts[i].src.indexOf('.bundle.js') >= 0){
-// 		var src = scripts[i].getAttribute('src')
-// 		__webpack_public_path__ = src.substr(0, src.lastIndexOf('/') + 1)
-// 		break
-// 	}
-// }
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import { AppContainer } from "react-hot-loader";
+import App from '../scripts/components/App'
 
-ReactDom.render(<App className="app" />, document.querySelector('#root'))
+const $root = document.querySelector('#root')
+
+ReactDOM.render(<App/>, $root)
+
+if(module.hot) {
+	module.hot.accept("../scripts/components/App", () => {
+		const NextApp = require("../scripts/components/App").default
+		ReactDOM.render(<AppContainer><App/></AppContainer>,$root)
+	})
+}

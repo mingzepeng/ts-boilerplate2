@@ -6,13 +6,13 @@ var config = require('./webpack.dev.config');
 var opn = require('opn');
 var ip = '0.0.0.0';
 var port = 9000;
-
+var webpackDevServerEntries = ["react-hot-loader/patch","webpack-dev-server/client?http://"+ip+":"+port, "webpack/hot/only-dev-server"]
 if (typeof config.entry === 'string') {
-  config.entry = ["webpack-dev-server/client?http://"+ip+":"+port, "webpack/hot/only-dev-server" ,config.entry];
+  config.entry = webpackDevServerEntries.concat([config.entry]) 
 }else if(typeof config.entry === 'object'){
   for(var k in config.entry){
     var main = config.entry[k]
-    config.entry[k] = ["webpack-dev-server/client?http://"+ip+":"+port, "webpack/hot/only-dev-server"].concat(main)
+    config.entry[k] = webpackDevServerEntries.concat(main)
   }
 }
 

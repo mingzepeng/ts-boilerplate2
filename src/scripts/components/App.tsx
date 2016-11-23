@@ -1,10 +1,5 @@
 import * as React from 'react'
-
-interface AppProps {
-	className : string;	
-}
-
-class App extends React.Component<AppProps,any> {
+export default class App extends React.Component<any,any> {
 	render() {
 		return (
 			<div className="app">
@@ -13,5 +8,3 @@ class App extends React.Component<AppProps,any> {
 		)
 	}
 }
-
-export = App
