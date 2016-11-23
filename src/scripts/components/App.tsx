@@ -4,7 +4,7 @@ interface AppProps {
 	className : string;	
 }
 
-export default class App extends React.Component<AppProps,any> {
+class App extends React.Component<AppProps,any> {
 	render() {
 		return (
 			<div className="app">
@@ -13,3 +13,5 @@ export default class App extends React.Component<AppProps,any> {
 		)
 	}
 }
+
+export = App

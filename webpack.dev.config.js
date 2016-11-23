@@ -4,7 +4,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
 	context: path.join(__dirname,'./src/entries'),
 	entry: {
-		main : './main.tsx'
+		main : './main.tsx',
+		commons : ['react','react-dom']
 	},
 	output: {
 		path: path.join(__dirname,'hot'),
@@ -16,8 +17,9 @@ module.exports = {
 		loaders: [
 			{ test : /\.less$/, loader : 'style-loader!css-loader!postcss-loader!less-loader'},
 			{ test : /\.css$/,  loader : 'style-loader!css-loader' },
-			{ test : /\.tsx?$/, loader : 'ts-loader' , exclude: /(node_modules|bower_components)/},
+			{ test : /\.tsx?$/, loaders: ['react-hot', 'ts'] , exclude: /(node_modules|bower_components)/},
 			{ test : /\.jsx?$/, loader : 'babel' , exclude: /(node_modules|bower_components)/},
+
 			// { test : /\.jsx?$/ , loader : 'babel-loader' , query:{ presets : ['es2015','react'] } , exclude: /(node_modules|bower_components)/},
 			//如果不超过30000/1024kb,那么就直接采用dataUrl的形式,超过则返回链接,图片会复制到dist目录下
 			{ test: /\.(png|jpg|jpeg|gif)$/, loader: "url-loader?limit=30000" },
@@ -27,11 +29,7 @@ module.exports = {
 
 	resolve : {
 		root : path.resolve('./src'),
-		extensions:  ["", ".js", ".json" ,".ts", ".tsx"] // ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
-		// alias : {
-		//     'react' : path.join(nodeModulesPath,'react/dist/react.js'),
-		//     'react-dom' :  path.join(nodeModulesPath,'react-dom/dist/react-dom.js')
-		// }
+		extensions: ["", ".webpack.js", ".web.js", ".js", ".ts" , ".jsx", ".tsx"]
 	},
 
 	postcss: function () {
@@ -47,7 +45,8 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
 			template : path.join(__dirname,'src/index.html'),
-			inject: true
+			inject: true,
+			chunks : ['commons','main']
 		})
 	],
 	debug : true,

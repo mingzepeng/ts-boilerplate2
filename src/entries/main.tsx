@@ -1,8 +1,8 @@
 
 import 'styles/style.less'
-import * as React from 'react'
-import * as ReactDom from 'react-dom'
-import App from '../scripts/components/App'
+import React = require('react')
+import ReactDom = require('react-dom')
+import App = require('../scripts/components/App')
 
 // declare var __webpack_public_path__  : string;
 // if (process.env.NODE_ENV !== 'production') {

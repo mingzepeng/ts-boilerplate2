@@ -1,10 +1,9 @@
 ## TypeScript Boilerplate
 这个脚手架项目专门为webpack+react开发单页应用定制，使用 TypeScript ，并采用less和postcss处理css。
 
-(目前尚在开发中，请勿使用)
+(目前尚在开发中，请谨慎使用)
 
 ### IE8 支持
-将  package.josn 中 react 和 react-dom 改为 0.14.0 版本  
 开发过程中，禁止使用 es6 module 写法  
 
 ### 开始
@@ -16,30 +15,14 @@
 5. auto open http://yourIP:9000 (not localhost or 127.0.0.1 , for mobile test)
 
 
-
 ### 内置部件
-webpack集成了对react jsx语法和es2015的支持，由babel实现。关于babel对es2015的支持情况，可以查看babel的相关文档[babel](http://babeljs.io/)
-less预处理器
-postcss 后处理器
+webpack集成了对 typescript(tsx) 和 jsx语法和es2015的支持
+less 预处理
+postcss 后处理
 
 
 ### 启动restful测试数据服务器
 `npm run mock` 启动测试数据服务器，数据配置在mock文件夹里，更详细的配置请参考[json-server文档](https://github.com/typicode/json-server)
-
-### 代码规范检查
-```
-npm run lint
-```
-采用eslint对js代码进行检查，配置文件为.eslintrc.json ，可以参考官方文档[eslint](http://eslint.org/)
-
-### 执行单元测试
-```
-npm run test
-```
-采用karma和jasmine的组合进行单元测试，karma是一个针对web前端进行单元测试的自动化环境，jasmine是单元测试框架。单元测试的代码支持es6，请在test文件夹中新建测试文件。
-可以参考官方文档[karma](http://karma-runner.github.io/) [jasmine](http://jasmine.github.io/)
-
-
 
 
 ### 设置代理
